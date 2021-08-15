@@ -1,0 +1,48 @@
+<h5>Filter Menu</h5>
+<p>Filters are displayed in an overlay.</p>
+
+<p-table #dt1 [value]="users" [dataKey]="dataKey" [rows]="rows" [showCurrentPageReport]="showCurrentPageReport"
+[rowsPerPageOptions]="rowsPerPageOptions" [loading]="loading" [styleClass]="styleClass"
+[paginator]="paginator" [currentPageReportTemplate]="currentPageReportTemplate"
+[globalFilterFields]="globalFilterFields" [scrollable]="scrollable" [scrollHeight]="scrollHeight" [frozenWidth]="frozenWidth"
+[lazy]="lazy" (onLazyLoad)="loadCustomers($event)" [totalRecords]="totalRecords"
+[columns]="columns" [frozenColumns]="frozenColumns">
+	<ng-template pTemplate="caption">
+		<div class="p-d-flex">
+			<span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+            </span>
+		</div>
+	</ng-template>
+	<ng-template pTemplate="frozencolgroup" let-columns>
+		<colgroup>
+			<col *ngFor="let col of columns" [style]="col.width">
+		</colgroup>
+	</ng-template>
+	<ng-template pTemplate="colgroup" let-columns>
+		<colgroup>
+			<col *ngFor="let col of columns" [style]="col.width">
+		</colgroup>
+	</ng-template>
+	<ng-template pTemplate="header" let-columns>
+		<tr>
+			<th style="height:84px;" *ngFor="let col of columns">
+				{{col.header}}
+				<p-columnFilter type="text" field="{{col.field}}" display="menu"></p-columnFilter>
+			</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-rowData let-columns="columns">
+		<tr>
+			<td style="height:84px" *ngFor="let col of columns">
+				{{rowData[col.field]}}
+			</td>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="emptymessage">
+		<tr>
+			<td colspan="7">No customers found.</td>
+		</tr>
+	</ng-template>
+</p-table>

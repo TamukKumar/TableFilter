@@ -1,0 +1,8 @@
+<app-customtable (lazyLoad)="lazyLoadCustomer($event)" [users]="users" [dataKey]="'id'"
+[loading]="loading" [columns]="scrollableCols" [frozenColumns]="frozenCols"
+[rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+[styleClass]="'p-datatable-customers p-datatable-gridlines'"
+[paginator]="true" [currentPageReportTemplate]="'Showing {first} to {last} of {totalRecords} entries'"
+[globalFilterFields]="['userName']" [scrollable]="true" [scrollHeight]="'calc(60vh - 20vh)'" [frozenWidth]="'450px'"
+[lazy]="true" [totalRecords]="totalRecords">
+</app-customtable>
